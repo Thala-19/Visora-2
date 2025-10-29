@@ -1,0 +1,7 @@
+inputAudio.wav
+objects.txt
+output.txt
+transcript.txt
+yolo12n.pt
+__pycache__/
+tempCodeRunnerFile.py

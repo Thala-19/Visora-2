@@ -7,8 +7,8 @@ warnings.filterwarnings('ignore')
 
 import google.generativeai as genai
 
-# api_key = os.getenv('GOOGLE_API_KEY')
-api_key = "AIzaSyARJOiO901RqUrDU89whfXT06yuVAM4_gg"
+api_key = os.getenv('GOOGLE_API_KEY')
+# api_key = "API_KEY"
 
 if not api_key:
     raise ValueError("GOOGLE_API_KEY not found. Please set it in your .env file or environment variables.")

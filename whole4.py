@@ -91,6 +91,15 @@ if len(audio) > 0:
     st.markdown("**Transcribed Text:**")
     st.markdown(result["text"])
 
+    # --- Save transcription to transcript.txt ---
+    transcript_file_path = "transcript.txt"
+    try:
+        with open(transcript_file_path, "w", encoding="utf-8") as f:
+            f.write(result["text"])
+        # st.success(f"Transcription saved to {transcript_file_path}")
+    except Exception as e:
+        st.error(f"Error saving to {transcript_file_path}: {e}")
+
     if contains_what_am_i_seeing(result["text"]):
         audio_bytes = synthesize_speech("Describing what I see.")
         st.audio(audio_bytes)

@@ -7,8 +7,8 @@ warnings.filterwarnings('ignore')
 
 import google.generativeai as genai
 
-api_key = os.getenv('GOOGLE_API_KEY')
-# api_key = "API_KEY"
+# api_key = os.getenv('AIzaSyARJOiO901RqUrDU89whfXT06yuVAM4_gg')
+api_key = "API_KEY"
 
 if not api_key:
     raise ValueError("GOOGLE_API_KEY not found. Please set it in your .env file or environment variables.")
@@ -19,7 +19,7 @@ def load_gemini(api_key):
     global chain_cache
     if chain_cache is None:
         genai.configure(api_key=api_key)
-        chat_model = ChatGoogleGenerativeAI(google_api_key=api_key, model="gemini-2.0-flash-lite")
+        chat_model = ChatGoogleGenerativeAI(google_api_key=api_key, model="gemini-2.5-flash-lite")
 
         from langchain_core.prompts import ChatPromptTemplate
         from langchain_core.output_parsers import StrOutputParser
@@ -37,10 +37,11 @@ def load_gemini(api_key):
 def gemini_get_response():
     transcript_file_path = "transcript.txt"  # Assuming ttt.py is in the same folder as transcript.txt
     input_text_from_file = ""
-
+ 
     chain = load_gemini(api_key)
     try:
-        with open(transcript_file_path, "r", encoding="utf-8") as f:
+        with open(transcript_file_path, "a+", encoding="utf-8") as f:
+            f.seek(0)
             input_text_from_file = f.read().strip()
         if not input_text_from_file:
             # print(f"Info: The file {transcript_file_path} was empty. The model might not have specific input.")
